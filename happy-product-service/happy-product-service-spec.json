@@ -1,0 +1,195 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "Happy Product Service RESTful API",
+    "version": "1.0",
+    "contact": {
+      "name": "Syahda Romansyah",
+      "email": "syahdarom@gmail.com"
+    }
+  },
+  "servers": [{ "url": "http://localhost:50000/api" }],
+  "paths": {
+    "/products": {
+      "get": {
+        "tags": ["Happy Product Service API"],
+        "description": "Get products",
+        "summary": "Get products",
+        "responses": {
+          "200": {
+            "description": "Success to get products",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "number"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "id": {
+                            "type": "number"
+                          },
+                          "type": {
+                            "type": "string"
+                          },
+                          "name": {
+                            "type": "string"
+                          },
+                          "priceName": {
+                            "type": "string"
+                          },
+                          "productStock": {
+                            "type": "number"
+                          },
+                          "productPrice": {
+                            "type": "number"
+                          },
+                          "reservation": {
+                            "type": "number"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/products/:productid": {
+      "put": {
+        "tags": ["Happy Product Service API"],
+        "description": "Update product by id",
+        "summary": "Update product by id",
+        "parameters": [
+          {
+            "name": "Product Id",
+            "in": "query",
+            "required": true,
+            "description": "Product Id",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "productReserved": {
+                    "type": "number"
+                  },
+                  "isOrder": {
+                    "type": "boolean"
+                  },
+                  "isOrderReject": {
+                    "type": "boolean"
+                  },
+                  "isPaid": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success to update product by id",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "number"
+                    },
+                    "status": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Failed to update a product",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "number"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Failed to update a product",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "number"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to update a product",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "code": {
+                      "type": "number"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "data": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
